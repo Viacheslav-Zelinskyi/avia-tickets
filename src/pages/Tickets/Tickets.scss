@@ -1,0 +1,26 @@
+.tickets {
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+    }
+    &__container {
+        margin-top: 50px;
+        width: 100%;
+        max-width: 1000px;
+        height: 500px;
+    }
+    &__step {
+        margin: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        &--selector {
+            width: 300px;
+            text-align: left;
+        }
+        &--submit {
+            text-align: right;
+            margin-right: 30px;
+        }
+    }
+}
