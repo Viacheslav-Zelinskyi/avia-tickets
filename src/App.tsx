@@ -1,10 +1,7 @@
-import { Button } from "antd";
 import "./App.scss";
 
 function App() {
-  return <div className="App">
-    <Button>Lol</Button>
-  </div>;
+  return <div className="App"></div>;
 }
 
 export default App;
