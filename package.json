@@ -1,4 +1,5 @@
 {
+  "homepage": "https://viacheslav-zelinskyi.github.io/avia-tickets/",
   "name": "avia-tickets",
   "version": "0.1.0",
   "private": true,
@@ -24,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +49,6 @@
   },
   "devDependencies": {
     "sass": "^1.43.4"
+    "gh-pages": "^3.2.3"
   }
 }
