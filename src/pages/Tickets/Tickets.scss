@@ -1,0 +1,61 @@
+.tickets {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  &__container {
+    margin-top: 50px;
+    width: 100%;
+    max-width: 1000px;
+    height: 500px;
+  }
+  &__step {
+    margin: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    &--selector {
+      width: 300px;
+      text-align: left;
+    }
+    &--submit {
+      text-align: right;
+      margin-right: 30px;
+    }
+  }
+  &__header {
+    margin-top: 15px;
+  }
+  &__counterContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+  }
+  &__peopleCounter {
+    display: flex;
+    h2 {
+      margin-right: 15px;
+    }
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      margin-left: 15px;
+    }
+    span {
+      font-size: 18px;
+    }
+  }
+  &__summaryContainer {
+      margin-top: 20px;
+  }
+}
+
+.flightslist {
+  margin: 50px;
+  &__radio {
+    margin-bottom: 20px;
+  }
+}
