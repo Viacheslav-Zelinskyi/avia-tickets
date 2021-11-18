@@ -1,4 +1,4 @@
-import { Table } from "antd";
+import { Button, Table } from "antd";
 import "./MyTickets.scss";
 
 const MyTickets = () => {
@@ -7,6 +7,8 @@ const MyTickets = () => {
       <div className="mytickets__table">
           <Table dataSource={[]} columns={columns}/>
       </div>
+      <Button type="primary" className="mytickets__downloadBtn">Save as JSON</Button>
+      <Button type="primary" className="mytickets__downloadBtn">Upload JSON</Button>
     </div>
   );
 };

@@ -1,3 +1,8 @@
 .mytickets {
-    
+    &__wrapper {
+        text-align: right;
+    }
+    &__downloadBtn {
+        margin: 20px;
+    }
 }
