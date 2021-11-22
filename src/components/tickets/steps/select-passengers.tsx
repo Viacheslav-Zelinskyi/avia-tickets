@@ -1,4 +1,7 @@
 import { Button } from "antd";
+import { useDispatch } from "react-redux";
+import { IPeopleCounter } from "../../../models/ticket_interfaces";
+import { setPassengers } from "../../../redux/reducers/ticket";
 import strings from "../strings";
 import "./steps.scss";
 
@@ -6,11 +9,7 @@ interface ISelectPassengersProps {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   currentStep: number;
   setPeopleCounter: React.Dispatch<React.SetStateAction<any>>;
-  peopleCounter: {
-    adult: number;
-    childrens: number;
-    infants: number;
-  };
+  peopleCounter: IPeopleCounter;
 }
 
 interface IPeopleCounterProps {
@@ -24,28 +23,31 @@ const SelectPassengers = ({
   currentStep,
   setPeopleCounter,
   peopleCounter,
-}: ISelectPassengersProps) => (
-  <div className="step__wrapper">
-    <div className="step__container">
-      <div>
-        <PeopleCounter
-          labels={[strings.adult, strings.childrens, strings.infants]}
-          setPeopleCounter={setPeopleCounter}
-          peopleCounter={peopleCounter}
-        />
+}: ISelectPassengersProps) => {
+  const dispatch = useDispatch();
+  const savePassengersNumber = () => {
+    setCurrentStep(currentStep + 1);
+    dispatch(setPassengers(peopleCounter));
+  };
+  return (
+    <div className="step__wrapper">
+      <div className="step__container">
+        <div>
+          <PeopleCounter
+            labels={[strings.adult, strings.childrens, strings.infants]}
+            setPeopleCounter={setPeopleCounter}
+            peopleCounter={peopleCounter}
+          />
+        </div>
+      </div>
+      <div className="step__submit">
+        <Button type="primary" size="large" onClick={savePassengersNumber}>
+          {strings.submit}
+        </Button>
       </div>
     </div>
-    <div className="step__submit">
-      <Button
-        type="primary"
-        size="large"
-        onClick={() => setCurrentStep(currentStep + 1)}
-      >
-        {strings.submit}
-      </Button>
-    </div>
-  </div>
-);
+  );
+};
 
 const PeopleCounter = ({
   labels,

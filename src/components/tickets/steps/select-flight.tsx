@@ -1,4 +1,7 @@
-import { DatePicker, Radio, TimePicker, Button } from "antd";
+import { DatePicker, Radio, Button } from "antd";
+import { Moment } from "moment";
+import { useDispatch } from "react-redux";
+import { setReturnDate } from "../../../redux/reducers/ticket";
 import strings from "../strings";
 import "./steps.scss";
 
@@ -9,12 +12,18 @@ interface ISelectFlightProps {
   isRoundTrip: number;
 }
 
+const dateFormat = "DD.MM.YYYY HH:mm";
+
 const SelectFlight = ({
   setCurrentStep,
   currentStep,
   setIsRoundTrip,
   isRoundTrip,
 }: ISelectFlightProps) => {
+  const dispatch = useDispatch();
+  const setDate = (date: Moment | null) => {
+    dispatch(setReturnDate(date?.unix() || null));
+  };
   return (
     <div className="step__wrapper">
       <Radio.Group
@@ -29,15 +38,14 @@ const SelectFlight = ({
         {isRoundTrip ? (
           <div>
             <h2 className="step__header">{strings.selectDate}</h2>
-            <div>
-              <DatePicker size="large" className="step__selector" />
-              <TimePicker
+              <DatePicker
+                showTime
                 size="large"
-                format="HH:mm"
+                format={dateFormat}
                 minuteStep={15}
                 className="step__selector"
+                onChange={setDate}
               />
-            </div>
           </div>
         ) : null}
       </div>
