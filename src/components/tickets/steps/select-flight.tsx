@@ -2,19 +2,19 @@ import { DatePicker, Radio, TimePicker, Button } from "antd";
 import strings from "../strings";
 import "./steps.scss";
 
-interface IThirdStepProps {
+interface ISelectFlightProps {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   currentStep: number;
   setIsRoundTrip: React.Dispatch<React.SetStateAction<number>>;
   isRoundTrip: number;
 }
 
-const ThirdStep = ({
+const SelectFlight = ({
   setCurrentStep,
   currentStep,
   setIsRoundTrip,
   isRoundTrip,
-}: IThirdStepProps) => {
+}: ISelectFlightProps) => {
   return (
     <div className="step__wrapper">
       <Radio.Group
@@ -54,4 +54,4 @@ const ThirdStep = ({
   );
 };
 
-export default ThirdStep;
+export default SelectFlight;

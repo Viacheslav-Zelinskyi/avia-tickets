@@ -2,18 +2,20 @@ import { DatePicker, TimePicker, Button } from "antd";
 import strings from "../strings";
 import "./steps.scss";
 
-interface ISecondStepProps {
+interface ISelectDateProps {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   currentStep: number;
 }
 
-const SecondStep = ({ setCurrentStep, currentStep }: ISecondStepProps) => (
+const timeFormat = "HH:mm";
+
+const SelectDate = ({ setCurrentStep, currentStep }: ISelectDateProps) => (
   <div className="step__wrapper">
     <div className="step__container">
       <DatePicker size="large" className="step__selector" />
       <TimePicker
         size="large"
-        format="HH:mm"
+        format={timeFormat}
         minuteStep={15}
         className="step__selector"
       />
@@ -30,4 +32,4 @@ const SecondStep = ({ setCurrentStep, currentStep }: ISecondStepProps) => (
   </div>
 );
 
-export default SecondStep;
+export default SelectDate;

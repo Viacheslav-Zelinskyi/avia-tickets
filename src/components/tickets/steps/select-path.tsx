@@ -8,14 +8,14 @@ interface ICountrySelector {
   countries: Array<Object>;
 }
 
-interface IFirstStepProps {
+interface ISelectPathProps {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   currentStep: number;
 }
 
 const { Option } = Select;
 
-const FirstStep = ({ setCurrentStep, currentStep }: IFirstStepProps) => (
+const SelectPath = ({ setCurrentStep, currentStep }: ISelectPathProps) => (
   <div className="step__wrapper">
     <div className="step__container">
       <CountrySelector placeholder={strings.from} countries={[]} />
@@ -41,4 +41,4 @@ const CountrySelector = ({ placeholder, countries }: ICountrySelector) => (
   </Select>
 );
 
-export default FirstStep;
+export default SelectPath;
