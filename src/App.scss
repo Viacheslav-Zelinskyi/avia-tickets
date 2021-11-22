@@ -1,6 +1,8 @@
-@import '~antd/dist/antd.css';
-@import 'styles/_colors.scss';
+@import "~antd/dist/antd.css";
 .App {
   text-align: center;
   height: 100vh;
+}
+.main {
+  height: 82%;
 }
