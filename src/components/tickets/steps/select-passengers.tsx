@@ -25,10 +25,13 @@ const SelectPassengers = ({
   peopleCounter,
 }: ISelectPassengersProps) => {
   const dispatch = useDispatch();
+
   const savePassengersNumber = () => {
     setCurrentStep(currentStep + 1);
+    
     dispatch(setPassengers(peopleCounter));
   };
+
   return (
     <div className="step__wrapper">
       <div className="step__container">

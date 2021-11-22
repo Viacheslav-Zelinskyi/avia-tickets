@@ -11,6 +11,7 @@ interface IButton {
 
 const MyTickets = () => {
   const tickets: Array<Object> = useSelector((store: any) => store.allTickets);
+
   return (
     <div className="mytickets__wrapper">
       <div className="mytickets__table">
@@ -30,7 +31,20 @@ const Button = ({ text }: IButton) => (
   <ButtonBase type="primary">{text}</ButtonBase>
 );
 
+const showPassengers = (passengers: IPeopleCounter) =>
+  `${strings.adult + passengers.adult} ${
+    strings.childrens + passengers.childrens
+  } ${strings.infants + passengers.infants}`;
+
+const showDate = (timestamp: number | undefined) =>
+  timestamp ? getDateFromTimestamp(timestamp) : null;
+
 const columns = [
+  {
+    title: strings.id,
+    dataIndex: "id",
+    key: "id",
+  },
   {
     title: strings.from,
     dataIndex: "from",
@@ -45,22 +59,19 @@ const columns = [
     title: strings.departureDate,
     dataIndex: "departureDate",
     key: "departureDate",
-    render: (timestamp: number) => getDateFromTimestamp(timestamp),
+    render: showDate,
   },
   {
     title: strings.returnDate,
     dataIndex: "returnDate",
     key: "returnDate",
-    render: (timestamp: number) => getDateFromTimestamp(timestamp),
+    render: showDate,
   },
   {
     title: strings.passengers,
     dataIndex: "passengers",
     key: "passengers",
-    render: (passengers: IPeopleCounter) =>
-      `${strings.adult + passengers.adult} ${
-        strings.childrens + passengers.childrens
-      } ${strings.infants + passengers.infants}`,
+    render: showPassengers,
   },
   {
     title: strings.actions,

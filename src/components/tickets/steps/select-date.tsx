@@ -14,9 +14,11 @@ const dateFormat = "DD.MM.YYYY HH:mm";
 
 const SelectDate = ({ setCurrentStep, currentStep }: ISelectDateProps) => {
   const dispatch = useDispatch();
+
   const setDate = (date: Moment | null) => {
     dispatch(setDepartureDate(date?.unix() || null));
   };
+  
   return (
     <div className="step__wrapper">
       <div className="step__container">

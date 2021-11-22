@@ -21,9 +21,11 @@ const SelectFlight = ({
   isRoundTrip,
 }: ISelectFlightProps) => {
   const dispatch = useDispatch();
+
   const setDate = (date: Moment | null) => {
     dispatch(setReturnDate(date?.unix() || null));
   };
+
   return (
     <div className="step__wrapper">
       <Radio.Group
@@ -38,14 +40,14 @@ const SelectFlight = ({
         {isRoundTrip ? (
           <div>
             <h2 className="step__header">{strings.selectDate}</h2>
-              <DatePicker
-                showTime
-                size="large"
-                format={dateFormat}
-                minuteStep={15}
-                className="step__selector"
-                onChange={setDate}
-              />
+            <DatePicker
+              showTime
+              size="large"
+              format={dateFormat}
+              minuteStep={15}
+              className="step__selector"
+              onChange={setDate}
+            />
           </div>
         ) : null}
       </div>

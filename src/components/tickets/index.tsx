@@ -12,7 +12,9 @@ const { Step } = Steps;
 
 const Tickets = () => {
   const ticket: ITicket = useSelector((store: any) => store.ticket);
+
   const navigate = useNavigate();
+
   const [countries, setCountries] = useState<Array<Object>>([]);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isRoundTrip, setIsRoundTrip] = useState<number>(1);
@@ -21,11 +23,13 @@ const Tickets = () => {
     childrens: 0,
     infants: 0,
   });
+
   useEffect(() => {
     getCountries()
       .then((countries) => setCountries(countries))
       .catch((err) => alert(err));
   }, []);
+
   const stepProps = {
     setCurrentStep: setCurrentStep,
     currentStep: currentStep,
@@ -35,8 +39,9 @@ const Tickets = () => {
     peopleCounter: peopleCounter,
     countries: countries,
     ticket: ticket,
-    navigate: navigate
+    navigate: navigate,
   };
+
   return (
     <div className="tickets__wrapper">
       <div className="tickets__container">

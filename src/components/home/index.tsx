@@ -12,6 +12,7 @@ const HomePage = () => {
     { src: MinskImg, country: "Belarus" },
     { src: NewYorkImg, country: "USA" },
   ];
+  
   return (
     <div className="home__wrapper">
       <Carousel className="home__carousel" autoplay effect="fade">

@@ -18,11 +18,14 @@ interface ISummaryProps {
 
 const Summary = ({ ticket, navigate }: ISummaryProps) => {
   const dispatch = useDispatch();
+
   const buyTicket = () => {
     dispatch(addTicket(ticket));
     dispatch(clearTicket());
+    
     navigate(myTicketsPath);
   };
+
   return (
     <div className="step__summaryContainer">
       <Card className="step__summaryCard" title={strings.summary} type="inner">

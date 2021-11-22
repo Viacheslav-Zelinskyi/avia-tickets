@@ -10,6 +10,7 @@ const strings = {
   adult: "Adult: ",
   childrens: "Childrens: ",
   infants: "Infants: ",
+  id: "ID"
 };
 
 export default strings;

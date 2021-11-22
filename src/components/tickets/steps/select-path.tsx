@@ -6,7 +6,7 @@ import strings from "../strings";
 import "./steps.scss";
 
 interface ICountrySelector {
-  placeholders: Array<string>;
+  values: Array<string>;
   countries: Array<Object>;
 }
 
@@ -14,6 +14,11 @@ interface ISelectPathProps {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   currentStep: number;
   countries: Array<Object>;
+}
+
+enum CountrySelectorType {
+  From = "From",
+  To = "To",
 }
 
 const { Option } = Select;
@@ -26,7 +31,7 @@ const SelectPath = ({
   <div className="step__wrapper">
     <div className="step__container">
       <CountrySelector
-        placeholders={[strings.from, strings.to]}
+        values={[CountrySelectorType.From, CountrySelectorType.To]}
         countries={countries}
       />
     </div>
@@ -42,20 +47,22 @@ const SelectPath = ({
   </div>
 );
 
-const CountrySelector = ({ placeholders, countries }: ICountrySelector) => {
+const CountrySelector = ({ values, countries }: ICountrySelector) => {
   const dispatch = useDispatch();
-  const setTravelRoute = (country: string, placeholder: string) => {
-    if (placeholder === "From") dispatch(setFrom(country));
+
+  const setTravelRoute = (country: string, value: string) => {
+    if (value === CountrySelectorType.From) dispatch(setFrom(country));
     else dispatch(setDestination(country));
   };
+
   return (
     <>
-      {placeholders.map((placeholder) => (
+      {values.map((value) => (
         <Select
-          placeholder={placeholder}
+          placeholder={value}
           size="large"
           className="step__selector"
-          onChange={(country: string) => setTravelRoute(country, placeholder)}
+          onChange={(country: string) => setTravelRoute(country, value)}
         >
           {countries.map((country: any) => (
             <Option value={country.name.common}>{country.name.common}</Option>
