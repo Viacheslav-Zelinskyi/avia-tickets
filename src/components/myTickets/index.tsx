@@ -1,4 +1,7 @@
 import { Button as ButtonBase, Table } from "antd";
+import { useSelector } from "react-redux";
+import { IPeopleCounter } from "../../models/ticket_interfaces";
+import { getDateFromTimestamp } from "../../utils/date.helpers";
 import "./myTickets.scss";
 import strings from "./strings";
 
@@ -7,10 +10,12 @@ interface IButton {
 }
 
 const MyTickets = () => {
+  const tickets: Array<Object> = useSelector((store: any) => store.allTickets);
+
   return (
     <div className="mytickets__wrapper">
       <div className="mytickets__table">
-        <Table dataSource={[]} columns={columns} />
+        <Table dataSource={tickets} columns={columns} />
       </div>
       <div className="mytickets__btnWrapper">
         <div className="mytickets__btnBlock">
@@ -26,34 +31,50 @@ const Button = ({ text }: IButton) => (
   <ButtonBase type="primary">{text}</ButtonBase>
 );
 
+const showPassengers = (passengers: IPeopleCounter) =>
+  `${strings.adult + passengers.adult} ${
+    strings.childrens + passengers.childrens
+  } ${strings.infants + passengers.infants}`;
+
+const showDate = (timestamp: number | undefined) =>
+  timestamp ? getDateFromTimestamp(timestamp) : null;
+
 const columns = [
   {
-    title: "From",
+    title: strings.id,
+    dataIndex: "id",
+    key: "id",
+  },
+  {
+    title: strings.from,
     dataIndex: "from",
     key: "from",
   },
   {
-    title: "To",
+    title: strings.to,
     dataIndex: "to",
     key: "to",
   },
   {
-    title: "Departure date",
-    dataIndex: "departure",
-    key: "departure",
+    title: strings.departureDate,
+    dataIndex: "departureDate",
+    key: "departureDate",
+    render: showDate,
   },
   {
-    title: "Arrive date",
-    dataIndex: "arrive",
-    key: "arrive",
+    title: strings.returnDate,
+    dataIndex: "returnDate",
+    key: "returnDate",
+    render: showDate,
   },
   {
-    title: "Passengers",
+    title: strings.passengers,
     dataIndex: "passengers",
     key: "passengers",
+    render: showPassengers,
   },
   {
-    title: "Actions",
+    title: strings.actions,
     dataIndex: "actions",
     key: "actions",
   },
