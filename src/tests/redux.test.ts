@@ -6,6 +6,7 @@ import {
   setDepartureDate,
   setReturnDate,
   setPassengers,
+  clearTicket,
 } from "../redux/reducers/ticket";
 
 const tikcetMock = {
@@ -35,15 +36,60 @@ describe("Redux store tests", () => {
     expect(allTicketsState[0]).toEqual({ id: 0, ...tikcetMock });
   });
 
-  it("Test ticket reducers", () => {
+  it("Test ticket setFrom action", () => {
     store.dispatch(setFrom(tikcetMock.from));
+
+    const ticket = store.getState().ticket;
+
+    expect(ticket).toEqual({ from: tikcetMock.from });
+  });
+
+  it("Test ticket setDestination action", () => {
     store.dispatch(setDestination(tikcetMock.to));
+
+    const ticket = store.getState().ticket;
+
+    expect(ticket).toEqual({ to: tikcetMock.to, from: tikcetMock.from });
+  });
+
+  it("Test ticket setDepartureDate action", () => {
     store.dispatch(setDepartureDate(tikcetMock.departureDate));
+
+    const ticket = store.getState().ticket;
+
+    expect(ticket).toEqual({
+      to: tikcetMock.to,
+      from: tikcetMock.from,
+      departureDate: tikcetMock.departureDate,
+    });
+  });
+
+  it("Test ticket setReturnDate action", () => {
     store.dispatch(setReturnDate(tikcetMock.returnDate));
+
+    const ticket = store.getState().ticket;
+
+    expect(ticket).toEqual({
+      to: tikcetMock.to,
+      from: tikcetMock.from,
+      departureDate: tikcetMock.departureDate,
+      returnDate: tikcetMock.returnDate,
+    });
+  });
+
+  it("Test ticket setPassengers action", () => {
     store.dispatch(setPassengers(tikcetMock.passengers));
 
     const ticket = store.getState().ticket;
 
     expect(ticket).toEqual(tikcetMock);
+  });
+
+  it("Tesy ticket clear action", () => {
+    store.dispatch(clearTicket());
+
+    const ticket = store.getState().ticket;
+
+    expect(ticket).toEqual({});
   });
 });
