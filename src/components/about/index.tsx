@@ -1,19 +1,23 @@
+import { useTranslation } from "react-i18next";
 import "./about.scss";
 import AboutImg from "./images/about.jpg";
-import strings from "./strings";
 
-const About = () => (
-  <div className="about__wrapper">
-    <div className="about__content">
-      <div className="about__description">
-        <h1>{strings.about}</h1>
-        <p>{strings.description}</p>
-      </div>
-      <div className="about__image">
-        <img src={AboutImg} alt={strings.belavia} />
+const About = () => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="about__wrapper">
+      <div className="about__content">
+        <div className="about__description">
+          <h1>{t("about.about")}</h1>
+          <p>{t("about.description")}</p>
+        </div>
+        <div className="about__image">
+          <img src={AboutImg} alt={t("about.belavia")} />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default About;

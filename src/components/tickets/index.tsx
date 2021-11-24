@@ -2,15 +2,17 @@ import "./tickets.scss";
 import { Steps } from "antd";
 import { useEffect, useState } from "react";
 import stepContent from "./steps";
-import strings from "./strings";
 import { IPeopleCounter, ITicket } from "../../models/ticket_interfaces";
 import { getCountries } from "../../api";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const { Step } = Steps;
 
 const Tickets = () => {
+  const { t } = useTranslation();
+
   const ticket: ITicket = useSelector((store: any) => store.ticket);
 
   const navigate = useNavigate();
@@ -46,11 +48,11 @@ const Tickets = () => {
     <div className="tickets__wrapper">
       <div className="tickets__container">
         <Steps current={currentStep}>
-          <Step title={strings.firstStep} />
-          <Step title={strings.secondStep} />
-          <Step title={strings.thirdStep} />
-          <Step title={strings.fourthStep} />
-          <Step title={strings.fifthStep} />
+          <Step title={t("tickets.firstStep")} />
+          <Step title={t("tickets.secondStep")} />
+          <Step title={t("tickets.thirdStep")} />
+          <Step title={t("tickets.fourthStep")} />
+          <Step title={t("tickets.fifthStep")} />
         </Steps>
         {stepContent[currentStep](stepProps)}
       </div>

@@ -1,8 +1,8 @@
 import { DatePicker, Radio, Button } from "antd";
 import { Moment } from "moment";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { setReturnDate } from "../../../redux/reducers/ticket";
-import strings from "../strings";
 import "./steps.scss";
 
 interface ISelectFlightProps {
@@ -20,6 +20,8 @@ const SelectFlight = ({
   setIsRoundTrip,
   isRoundTrip,
 }: ISelectFlightProps) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
 
   const setDate = (date: Moment | null) => {
@@ -33,13 +35,13 @@ const SelectFlight = ({
         defaultValue={1}
         onChange={(e) => setIsRoundTrip(e.target.value)}
       >
-        <Radio value={1}>{strings.roundTrip}</Radio>
-        <Radio value={0}>{strings.oneWay}</Radio>
+        <Radio value={1}>{t("tickets.roundTrip")}</Radio>
+        <Radio value={0}>{t("tickets.oneWay")}</Radio>
       </Radio.Group>
       <div className="step__container">
         {isRoundTrip ? (
           <div>
-            <h2 className="step__header">{strings.selectDate}</h2>
+            <h2 className="step__header">{t("tickets.selectDate")}</h2>
             <DatePicker
               showTime
               size="large"
@@ -57,7 +59,7 @@ const SelectFlight = ({
           size="large"
           onClick={() => setCurrentStep(currentStep + 1)}
         >
-          {strings.submit}
+          {t("tickets.submit")}
         </Button>
       </div>
     </div>

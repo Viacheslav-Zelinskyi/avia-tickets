@@ -1,8 +1,8 @@
 import { Select, Button } from "antd";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { setDestination, setFrom } from "../../../redux/reducers/ticket";
-import strings from "../strings";
 import "./steps.scss";
 
 interface ICountrySelector {
@@ -27,25 +27,29 @@ const SelectPath = ({
   setCurrentStep,
   currentStep,
   countries,
-}: ISelectPathProps) => (
-  <div className="step__wrapper">
-    <div className="step__container">
-      <CountrySelector
-        values={[CountrySelectorType.From, CountrySelectorType.To]}
-        countries={countries}
-      />
+}: ISelectPathProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="step__wrapper">
+      <div className="step__container">
+        <CountrySelector
+          values={[CountrySelectorType.From, CountrySelectorType.To]}
+          countries={countries}
+        />
+      </div>
+      <div className="step__submit">
+        <Button
+          type="primary"
+          size="large"
+          onClick={() => setCurrentStep(currentStep + 1)}
+        >
+          {t("tickets.submit")}
+        </Button>
+      </div>
     </div>
-    <div className="step__submit">
-      <Button
-        type="primary"
-        size="large"
-        onClick={() => setCurrentStep(currentStep + 1)}
-      >
-        {strings.submit}
-      </Button>
-    </div>
-  </div>
-);
+  );
+};
 
 const CountrySelector = ({ values, countries }: ICountrySelector) => {
   const dispatch = useDispatch();
