@@ -48,11 +48,11 @@ const Tickets = () => {
     <div className="tickets__wrapper">
       <div className="tickets__container">
         <Steps current={currentStep}>
-          <Step title={t("tickets.firstStep")} />
-          <Step title={t("tickets.secondStep")} />
-          <Step title={t("tickets.thirdStep")} />
-          <Step title={t("tickets.fourthStep")} />
-          <Step title={t("tickets.fifthStep")} />
+          <Step title={t("steps.firstStep")} />
+          <Step title={t("steps.secondStep")} />
+          <Step title={t("steps.thirdStep")} />
+          <Step title={t("steps.fourthStep")} />
+          <Step title={t("steps.fifthStep")} />
         </Steps>
         {stepContent[currentStep](stepProps)}
       </div>

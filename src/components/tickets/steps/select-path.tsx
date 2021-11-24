@@ -44,7 +44,7 @@ const SelectPath = ({
           size="large"
           onClick={() => setCurrentStep(currentStep + 1)}
         >
-          {t("tickets.submit")}
+          {t("common.submit")}
         </Button>
       </div>
     </div>

@@ -31,7 +31,6 @@ const SelectPassengers = ({
   peopleCounter,
 }: ISelectPassengersProps) => {
   const { t } = useTranslation();
-
   const dispatch = useDispatch();
 
   const savePassengersNumber = () => {
@@ -57,7 +56,7 @@ const SelectPassengers = ({
       </div>
       <div className="step__submit">
         <Button type="primary" size="large" onClick={savePassengersNumber}>
-          {t("tickets.submit")}
+          {t("common.submit")}
         </Button>
       </div>
     </div>

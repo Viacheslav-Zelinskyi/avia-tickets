@@ -18,7 +18,6 @@ interface ISummaryProps {
 
 const Summary = ({ ticket, navigate }: ISummaryProps) => {
   const { t } = useTranslation();
-
   const dispatch = useDispatch();
 
   const buyTicket = () => {
@@ -35,8 +34,8 @@ const Summary = ({ ticket, navigate }: ISummaryProps) => {
         title={t("tickets.summary")}
         type="inner"
       >
-        <p>{t("tickets.from") + ": " + ticket.from}</p>
-        <p>{t("tickets.to") + ": " + ticket.to}</p>
+        <p>{t("common.from") + ": " + ticket.from}</p>
+        <p>{t("common.to") + ": " + ticket.to}</p>
         <p>
           {t("tickets.departureAt") +
             getDateFromTimestamp(ticket.departureDate)}

@@ -21,7 +21,6 @@ const SelectFlight = ({
   isRoundTrip,
 }: ISelectFlightProps) => {
   const { t } = useTranslation();
-
   const dispatch = useDispatch();
 
   const setDate = (date: Moment | null) => {
@@ -59,7 +58,7 @@ const SelectFlight = ({
           size="large"
           onClick={() => setCurrentStep(currentStep + 1)}
         >
-          {t("tickets.submit")}
+          {t("common.submit")}
         </Button>
       </div>
     </div>

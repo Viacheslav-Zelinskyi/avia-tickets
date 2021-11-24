@@ -14,7 +14,6 @@ const dateFormat = "DD.MM.YYYY HH:mm";
 
 const SelectDate = ({ setCurrentStep, currentStep }: ISelectDateProps) => {
   const { t } = useTranslation();
-
   const dispatch = useDispatch();
 
   const setDate = (date: Moment | null) => {
@@ -39,7 +38,7 @@ const SelectDate = ({ setCurrentStep, currentStep }: ISelectDateProps) => {
           size="large"
           onClick={() => setCurrentStep(currentStep + 1)}
         >
-          {t("tickets.submit")}
+          {t("common.submit")}
         </Button>
       </div>
     </div>

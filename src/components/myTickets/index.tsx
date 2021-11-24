@@ -48,12 +48,12 @@ const columns = (t: TFunction) => [
     key: "id",
   },
   {
-    title: t("myTickets.from"),
+    title: t("common.from"),
     dataIndex: "from",
     key: "from",
   },
   {
-    title: t("myTickets.to"),
+    title: t("common.to"),
     dataIndex: "to",
     key: "to",
   },
