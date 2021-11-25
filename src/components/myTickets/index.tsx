@@ -1,18 +1,28 @@
 import { Button as ButtonBase, Table } from "antd";
 import { TFunction, useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IPeopleCounter } from "../../models/ticket_interfaces";
+import { addTicket } from "../../redux/reducers/allTickets";
 import { getDateFromTimestamp } from "../../utils/date.helpers";
+import { exportToJson, uploadJson } from "../../utils/download.helpers";
 import "./myTickets.scss";
 
 interface IButton {
   text: string;
+  onClick: (e: any) => void;
 }
 
 const MyTickets = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const tickets: Array<Object> = useSelector((store: any) => store.allTickets);
+
+  const uploadTickets = () => {
+    uploadJson((ticket: Array<Object>) => {
+      dispatch(addTicket(ticket));
+    });
+  };
 
   return (
     <div className="mytickets__wrapper">
@@ -21,16 +31,21 @@ const MyTickets = () => {
       </div>
       <div className="mytickets__btnWrapper">
         <div className="mytickets__btnBlock">
-          <Button text={t("myTickets.saveJSON")} />
-          <Button text={t("myTickets.uploadJSON")} />
+          <Button text={t("myTickets.uploadJSON")} onClick={uploadTickets} />
         </div>
       </div>
     </div>
   );
 };
 
-const Button = ({ text }: IButton) => (
-  <ButtonBase type="primary">{text}</ButtonBase>
+const Button = ({ text, onClick }: IButton) => (
+  <ButtonBase type="primary" onClick={onClick}>
+    {text}
+  </ButtonBase>
+);
+
+const saveTicketBtn = (record: Object, t: TFunction) => (
+  <Button text={t("myTickets.saveJSON")} onClick={() => exportToJson(record)} />
 );
 
 const showPassengers = (passengers: IPeopleCounter, t: TFunction) =>
@@ -77,8 +92,9 @@ const columns = (t: TFunction) => [
   },
   {
     title: t("myTickets.actions"),
-    dataIndex: "actions",
-    key: "actions",
+    dataIndex: "action",
+    key: "action",
+    render: (value: any, record: Object) => saveTicketBtn(record, t),
   },
 ];
 
