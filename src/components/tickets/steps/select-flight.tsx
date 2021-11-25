@@ -21,12 +21,10 @@ const SelectFlight = ({
   currentStep,
   setIsRoundTrip,
   isRoundTrip,
-  ticket
+  ticket,
 }: ISelectFlightProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
-  const isEmptyForm = ticket.returnDate ? false : true; 
 
   const setDate = (date: Moment | null) => {
     dispatch(setReturnDate(date?.unix() || null));
@@ -62,7 +60,7 @@ const SelectFlight = ({
           type="primary"
           size="large"
           onClick={() => setCurrentStep(currentStep + 1)}
-          disabled={isEmptyForm && !!isRoundTrip}
+          disabled={!ticket.returnDate && !!isRoundTrip}
         >
           {t("common.submit")}
         </Button>

@@ -33,8 +33,6 @@ const SelectPath = ({
 }: ISelectPathProps) => {
   const { t } = useTranslation();
 
-  const isEmptyForm = ticket.from && ticket.to ? false : true;
-
   return (
     <div className="step__wrapper">
       <div className="step__container">
@@ -48,7 +46,7 @@ const SelectPath = ({
           type="primary"
           size="large"
           onClick={() => setCurrentStep(currentStep + 1)}
-          disabled={isEmptyForm}
+          disabled={!(ticket.from && ticket.to)}
         >
           {t("common.submit")}
         </Button>

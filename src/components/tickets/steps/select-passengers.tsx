@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { IPeopleCounter } from "../../../models/ticket_interfaces";
 import { setPassengers } from "../../../redux/reducers/ticket";
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import "./steps.scss";
 
 interface ISelectPassengersProps {
@@ -101,11 +102,11 @@ const PeopleCounter = ({
           <h2>{label}</h2>
           <div className="step__counterBtn">
             <Button shape="circle" onClick={() => decreaseCounter(index)}>
-              -
+              <MinusOutlined/>
             </Button>
             <span>{peopleCounter[passengersType[index]]}</span>
             <Button shape="circle" onClick={() => increaseCounter(index)}>
-              +
+              <PlusOutlined />
             </Button>
           </div>
         </div>

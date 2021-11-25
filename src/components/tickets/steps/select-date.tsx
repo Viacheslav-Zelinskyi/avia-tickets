@@ -18,8 +18,6 @@ const SelectDate = ({ setCurrentStep, currentStep, ticket }: ISelectDateProps) =
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const isEmptyForm = ticket.departureDate ? false : true;
-
   const setDate = (date: Moment | null) => {
     dispatch(setDepartureDate(date?.unix() || null));
   };
@@ -41,7 +39,7 @@ const SelectDate = ({ setCurrentStep, currentStep, ticket }: ISelectDateProps) =
           type="primary"
           size="large"
           onClick={() => setCurrentStep(currentStep + 1)}
-          disabled={isEmptyForm}
+          disabled={!(ticket.departureDate)}
         >
           {t("common.submit")}
         </Button>
