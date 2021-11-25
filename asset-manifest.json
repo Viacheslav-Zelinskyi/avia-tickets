@@ -1,29 +1,30 @@
 {
   "files": {
-    "main.css": "/avia-tickets/static/css/main.07884fc4.chunk.css",
-    "main.js": "/avia-tickets/static/js/main.2e1c4f01.chunk.js",
-    "main.js.map": "/avia-tickets/static/js/main.2e1c4f01.chunk.js.map",
-    "runtime-main.js": "/avia-tickets/static/js/runtime-main.a1fc7e45.js",
-    "runtime-main.js.map": "/avia-tickets/static/js/runtime-main.a1fc7e45.js.map",
-    "static/css/2.a72f6afe.chunk.css": "/avia-tickets/static/css/2.a72f6afe.chunk.css",
-    "static/js/2.eebe2720.chunk.js": "/avia-tickets/static/js/2.eebe2720.chunk.js",
-    "static/js/2.eebe2720.chunk.js.map": "/avia-tickets/static/js/2.eebe2720.chunk.js.map",
-    "index.html": "/avia-tickets/index.html",
-    "static/css/2.a72f6afe.chunk.css.map": "/avia-tickets/static/css/2.a72f6afe.chunk.css.map",
-    "static/css/main.07884fc4.chunk.css.map": "/avia-tickets/static/css/main.07884fc4.chunk.css.map",
-    "static/js/2.eebe2720.chunk.js.LICENSE.txt": "/avia-tickets/static/js/2.eebe2720.chunk.js.LICENSE.txt",
-    "static/media/Kyiv.55384f49.jpg": "/avia-tickets/static/media/Kyiv.55384f49.jpg",
-    "static/media/London.9ae5bae1.jpg": "/avia-tickets/static/media/London.9ae5bae1.jpg",
-    "static/media/Minsk.87938b76.jpg": "/avia-tickets/static/media/Minsk.87938b76.jpg",
-    "static/media/NewYork.36da7b1a.jpg": "/avia-tickets/static/media/NewYork.36da7b1a.jpg",
-    "static/media/about.4d4a9cbe.jpg": "/avia-tickets/static/media/about.4d4a9cbe.jpg",
-    "static/media/Header.scss": "/avia-tickets/static/media/header.dec35301.jpg"
+    "main.css": "/static/css/main.05119bba.chunk.css",
+    "main.js": "/static/js/main.edc7fe0c.chunk.js",
+    "main.js.map": "/static/js/main.edc7fe0c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.83ddeea5.js",
+    "runtime-main.js.map": "/static/js/runtime-main.83ddeea5.js.map",
+    "static/css/2.123e9538.chunk.css": "/static/css/2.123e9538.chunk.css",
+    "static/js/2.060cb7bf.chunk.js": "/static/js/2.060cb7bf.chunk.js",
+    "static/js/2.060cb7bf.chunk.js.map": "/static/js/2.060cb7bf.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.123e9538.chunk.css.map": "/static/css/2.123e9538.chunk.css.map",
+    "static/css/main.05119bba.chunk.css.map": "/static/css/main.05119bba.chunk.css.map",
+    "static/js/2.060cb7bf.chunk.js.LICENSE.txt": "/static/js/2.060cb7bf.chunk.js.LICENSE.txt",
+    "static/media/Kyiv.55384f49.jpg": "/static/media/Kyiv.55384f49.jpg",
+    "static/media/London.9ae5bae1.jpg": "/static/media/London.9ae5bae1.jpg",
+    "static/media/Minsk.87938b76.jpg": "/static/media/Minsk.87938b76.jpg",
+    "static/media/NewYork.36da7b1a.jpg": "/static/media/NewYork.36da7b1a.jpg",
+    "static/media/about.4d4a9cbe.jpg": "/static/media/about.4d4a9cbe.jpg",
+    "static/media/getFetch.cjs": "/static/media/getFetch.582d29c4.cjs",
+    "static/media/header.scss": "/static/media/header.dec35301.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a1fc7e45.js",
-    "static/css/2.a72f6afe.chunk.css",
-    "static/js/2.eebe2720.chunk.js",
-    "static/css/main.07884fc4.chunk.css",
-    "static/js/main.2e1c4f01.chunk.js"
+    "static/js/runtime-main.83ddeea5.js",
+    "static/css/2.123e9538.chunk.css",
+    "static/js/2.060cb7bf.chunk.js",
+    "static/css/main.05119bba.chunk.css",
+    "static/js/main.edc7fe0c.chunk.js"
   ]
 }
