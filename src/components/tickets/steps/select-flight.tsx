@@ -2,6 +2,7 @@ import { DatePicker, Radio, Button } from "antd";
 import { Moment } from "moment";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { ITicket } from "../../../models/ticket_interfaces";
 import { setReturnDate } from "../../../redux/reducers/ticket";
 import "./steps.scss";
 
@@ -10,6 +11,7 @@ interface ISelectFlightProps {
   currentStep: number;
   setIsRoundTrip: React.Dispatch<React.SetStateAction<number>>;
   isRoundTrip: number;
+  ticket: ITicket;
 }
 
 const dateFormat = "DD.MM.YYYY HH:mm";
@@ -19,6 +21,7 @@ const SelectFlight = ({
   currentStep,
   setIsRoundTrip,
   isRoundTrip,
+  ticket,
 }: ISelectFlightProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -57,6 +60,7 @@ const SelectFlight = ({
           type="primary"
           size="large"
           onClick={() => setCurrentStep(currentStep + 1)}
+          disabled={!ticket.returnDate && !!isRoundTrip}
         >
           {t("common.submit")}
         </Button>

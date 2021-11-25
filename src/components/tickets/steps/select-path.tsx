@@ -2,6 +2,7 @@ import { Select, Button } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { ITicket } from "../../../models/ticket_interfaces";
 import { setDestination, setFrom } from "../../../redux/reducers/ticket";
 import "./steps.scss";
 
@@ -14,6 +15,7 @@ interface ISelectPathProps {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   currentStep: number;
   countries: Array<Object>;
+  ticket: ITicket;
 }
 
 enum CountrySelectorType {
@@ -27,6 +29,7 @@ const SelectPath = ({
   setCurrentStep,
   currentStep,
   countries,
+  ticket,
 }: ISelectPathProps) => {
   const { t } = useTranslation();
 
@@ -43,6 +46,7 @@ const SelectPath = ({
           type="primary"
           size="large"
           onClick={() => setCurrentStep(currentStep + 1)}
+          disabled={!(ticket.from && ticket.to)}
         >
           {t("common.submit")}
         </Button>

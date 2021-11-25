@@ -4,15 +4,17 @@ import { Moment } from "moment";
 import "./steps.scss";
 import { setDepartureDate } from "../../../redux/reducers/ticket";
 import { useTranslation } from "react-i18next";
+import { ITicket } from "../../../models/ticket_interfaces";
 
 interface ISelectDateProps {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   currentStep: number;
+  ticket: ITicket;
 }
 
 const dateFormat = "DD.MM.YYYY HH:mm";
 
-const SelectDate = ({ setCurrentStep, currentStep }: ISelectDateProps) => {
+const SelectDate = ({ setCurrentStep, currentStep, ticket }: ISelectDateProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -37,6 +39,7 @@ const SelectDate = ({ setCurrentStep, currentStep }: ISelectDateProps) => {
           type="primary"
           size="large"
           onClick={() => setCurrentStep(currentStep + 1)}
+          disabled={!(ticket.departureDate)}
         >
           {t("common.submit")}
         </Button>
