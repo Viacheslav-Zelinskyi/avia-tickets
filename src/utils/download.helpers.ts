@@ -2,7 +2,7 @@ export const exportToJson = (data: any) => {
   const blob = new Blob([JSON.stringify(data)], { type: "text/json" });
   const a = document.createElement("a");
 
-  a.download = "tickets.json";
+  a.download = "ticket.json";
   a.href = window.URL.createObjectURL(blob);
 
   const clickEvt = new MouseEvent("click", {

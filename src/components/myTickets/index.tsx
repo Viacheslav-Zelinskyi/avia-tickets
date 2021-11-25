@@ -19,8 +19,8 @@ const MyTickets = () => {
   const tickets: Array<Object> = useSelector((store: any) => store.allTickets);
 
   const uploadTickets = () => {
-    uploadJson((tickets: Array<Object>) => {
-      tickets.map((ticket) => dispatch(addTicket(ticket)));
+    uploadJson((ticket: Array<Object>) => {
+      dispatch(addTicket(ticket));
     });
   };
 
@@ -31,10 +31,6 @@ const MyTickets = () => {
       </div>
       <div className="mytickets__btnWrapper">
         <div className="mytickets__btnBlock">
-          <Button
-            text={t("myTickets.saveJSON")}
-            onClick={(e) => exportToJson(tickets)}
-          />
           <Button text={t("myTickets.uploadJSON")} onClick={uploadTickets} />
         </div>
       </div>
@@ -46,6 +42,10 @@ const Button = ({ text, onClick }: IButton) => (
   <ButtonBase type="primary" onClick={onClick}>
     {text}
   </ButtonBase>
+);
+
+const saveTicketBtn = (record: Object, t: TFunction) => (
+  <Button text={t("myTickets.saveJSON")} onClick={() => exportToJson(record)} />
 );
 
 const showPassengers = (passengers: IPeopleCounter, t: TFunction) =>
@@ -92,8 +92,9 @@ const columns = (t: TFunction) => [
   },
   {
     title: t("myTickets.actions"),
-    dataIndex: "actions",
-    key: "actions",
+    dataIndex: "action",
+    key: "action",
+    render: (value: any, record: Object) => saveTicketBtn(record, t),
   },
 ];
 
