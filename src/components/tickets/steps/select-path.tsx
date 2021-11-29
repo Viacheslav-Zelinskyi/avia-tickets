@@ -3,12 +3,17 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { ITicket } from "../../../models/ticket_interfaces";
-import { setDestination, setFrom } from "../../../redux/reducers/ticket";
+import {
+  setDestination,
+  setDestinationTimezone,
+  setFrom,
+  setFromTimezone,
+} from "../../../redux/reducers/ticket";
 import "./steps.scss";
 
 interface ICountrySelector {
   values: Array<string>;
-  countries: Array<Object>;
+  countries: Array<any>;
 }
 
 interface ISelectPathProps {
@@ -58,9 +63,14 @@ const SelectPath = ({
 const CountrySelector = ({ values, countries }: ICountrySelector) => {
   const dispatch = useDispatch();
 
-  const setTravelRoute = (country: string, value: string) => {
-    if (value === CountrySelectorType.From) dispatch(setFrom(country));
-    else dispatch(setDestination(country));
+  const setTravelRoute = (index: number, value: string) => {
+    if (value === CountrySelectorType.From) {
+      dispatch(setFrom(countries[index].name.common));
+      dispatch(setFromTimezone(countries[index].timezones[0]));
+    } else {
+      dispatch(setDestination(countries[index].name.common));
+      dispatch(setDestinationTimezone(countries[index].timezones[0]));
+    }
   };
 
   return (
@@ -70,10 +80,10 @@ const CountrySelector = ({ values, countries }: ICountrySelector) => {
           placeholder={value}
           size="large"
           className="step__selector"
-          onChange={(country: string) => setTravelRoute(country, value)}
+          onChange={(index: number) => setTravelRoute(index, value)}
         >
-          {countries.map((country: any) => (
-            <Option value={country.name.common}>{country.name.common}</Option>
+          {countries.map((country: any, index: number) => (
+            <Option value={index}>{country.name.common}</Option>
           ))}
         </Select>
       ))}

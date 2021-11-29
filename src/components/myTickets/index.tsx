@@ -80,8 +80,17 @@ const showPassengers = (passengers: IPeopleCounter, t: TFunction) =>
     t("myTickets.childrens") + passengers.childrens
   } ${t("myTickets.infants") + passengers.infants}`;
 
-const showDate = (timestamp: number | undefined) =>
-  timestamp ? getDateFromTimestamp(timestamp) : null;
+const showDepartureDate = (timestamp: number | undefined, record: any) => {
+  if (timestamp) {
+    return getDateFromTimestamp(timestamp, record.fromTimezone);
+  }
+};
+
+const showReturnDate = (timestamp: number | undefined, record: any) => {
+  if (timestamp) {
+    return getDateFromTimestamp(timestamp, record.destinationTimezone);
+  }
+};
 
 const columns = (t: TFunction, setEditMode: any) => [
   {
@@ -104,13 +113,13 @@ const columns = (t: TFunction, setEditMode: any) => [
     title: t("myTickets.departureDate"),
     dataIndex: "departureDate",
     key: "departureDate",
-    render: showDate,
+    render: showDepartureDate,
   },
   {
     title: t("myTickets.returnDate"),
     dataIndex: "returnDate",
     key: "returnDate",
-    render: showDate,
+    render: showReturnDate,
   },
   {
     title: t("myTickets.passengers"),
