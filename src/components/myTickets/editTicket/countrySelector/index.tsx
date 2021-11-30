@@ -1,11 +1,11 @@
 import { Select } from "antd";
-import { ICountry } from "../../../../models/ticket_interfaces";
+import { ICountry } from "../../../../models/ticket.interfaces";
 import "./countrySelector.scss";
 
 interface ICountrySelectorProps {
   countries: Array<ICountry>;
   placeholders: Array<string>;
-  defaultValues: Array<string>;
+  defaultValues: Array<string | undefined>;
   onChange: (country: string, index: number) => void;
 }
 
@@ -23,7 +23,7 @@ export const CountrySelector = ({
         <span>{value}:</span>
         <Select
           placeholder={value}
-          defaultValue={defaultValues[index]}
+          defaultValue={defaultValues && defaultValues[index]}
           size="large"
           className="step__selector"
           onChange={(value) => onChange(value, index)}

@@ -1,10 +1,11 @@
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
+import { IPeopleCounter } from "../../models/ticket.interfaces";
 import './peopleCounter.scss'
 
 interface IPeopleCounterProps {
   labels: string[];
-  setPeopleCounter: React.Dispatch<React.SetStateAction<any>>;
+  setPeopleCounter: React.Dispatch<React.SetStateAction<IPeopleCounter | undefined>>;
   peopleCounter: any;
 }
 

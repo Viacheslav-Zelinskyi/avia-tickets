@@ -1,11 +1,12 @@
 import { Button, DatePicker, Radio } from "antd";
-import moment, { Moment } from "moment";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { PeopleCounter } from "../..";
 import { getCountries } from "../../../api";
-import { ITicket } from "../../../models/ticket_interfaces";
+import { IStore, ITicketStore } from "../../../models/redux.interfaces";
+import { ITicket } from "../../../models/ticket.interfaces";
 import { updateTicket } from "../../../redux/reducers/allTickets";
 import { CountrySelector } from "./countrySelector";
 import "./editTicket.scss";
@@ -18,15 +19,15 @@ interface IEditTicketProps {
 const dateFormat = "DD.MM.YYYY HH:mm";
 
 const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
-  const ticket: ITicket = useSelector((store: any) =>
-    store.allTickets.find((ticket: ITicket) => ticket.id === id)
+  const ticket: ITicket | undefined = useSelector((store: IStore) =>
+    store.allTickets.find((ticket: ITicketStore) => ticket.id === id)
   );
 
   const dispatch = useDispatch();
-  const [updatedTicket, setUpdatedTicket] = useState<ITicket>(ticket);
+  const [updatedTicket, setUpdatedTicket] = useState(ticket);
   const [countries, setCountries] = useState([]);
-  const [peopleCounter, setPeopleCounter] = useState(ticket.passengers);
-  const [isOneWayTicket, setIsOneWayTicket] = useState(!ticket.returnDate);
+  const [peopleCounter, setPeopleCounter] = useState(ticket?.passengers);
+  const [isOneWayTicket, setIsOneWayTicket] = useState(!ticket?.returnDate);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
         <CountrySelector
           countries={countries}
           placeholders={[t("common.from"), t("common.to")]}
-          defaultValues={[ticket.from, ticket.to]}
+          defaultValues={[ticket?.from, ticket?.to]}
           onChange={setCountry}
         />
         <div className="editTicket__select">
@@ -66,7 +67,9 @@ const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
           <DatePicker
             showTime
             size="large"
-            defaultValue={moment(ticket.departureDate * 1000)}
+            defaultValue={moment(
+              ticket?.departureDate && ticket.departureDate * 1000
+            )}
             format={dateFormat}
             minuteStep={15}
             className="step__selector"
@@ -90,7 +93,9 @@ const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
               <DatePicker
                 showTime
                 size="large"
-                defaultValue={moment(ticket.returnDate * 1000)}
+                defaultValue={moment(
+                  ticket?.returnDate && ticket.returnDate * 1000
+                )}
                 format={dateFormat}
                 minuteStep={15}
                 className="step__selector"

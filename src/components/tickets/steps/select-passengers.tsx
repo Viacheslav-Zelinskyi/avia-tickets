@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { IPeopleCounter } from "../../../models/ticket_interfaces";
+import { IPeopleCounter } from "../../../models/ticket.interfaces";
 import { setPassengers } from "../../../redux/reducers/ticket";
 import "./steps.scss";
 import { PeopleCounter } from "../../index";

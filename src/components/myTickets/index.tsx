@@ -1,8 +1,9 @@
 import { Button as ButtonBase, Table } from "antd";
-import { useState } from "react";
+import React, { useState } from "react";
 import { TFunction, useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { IPeopleCounter, ITicket } from "../../models/ticket_interfaces";
+import { IStore, ITicketStore } from "../../models/redux.interfaces";
+import { IPeopleCounter } from "../../models/ticket.interfaces";
 import { addTicket } from "../../redux/reducers/allTickets";
 import { getDateFromTimestamp } from "../../utils/date.helpers";
 import { exportToJson, uploadJson } from "../../utils/download.helpers";
@@ -11,13 +12,15 @@ import "./myTickets.scss";
 
 interface IButton {
   text: string;
-  onClick: (e: any) => void;
+  onClick: React.MouseEventHandler<HTMLElement> | undefined;
 }
 
 interface IEditMode {
   id: number | null;
   mode: boolean;
 }
+
+type SetEditMode = React.Dispatch<React.SetStateAction<IEditMode>>;
 
 const MyTickets = () => {
   const [editMode, setEditMode] = useState<IEditMode>({
@@ -28,10 +31,12 @@ const MyTickets = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const tickets: Array<ITicket> = useSelector((store: any) => store.allTickets);
+  const tickets: Array<ITicketStore> = useSelector(
+    (store: IStore) => store.allTickets
+  );
 
   const uploadTickets = () => {
-    uploadJson((ticket: ITicket) => {
+    uploadJson((ticket: ITicketStore) => {
       dispatch(addTicket(ticket));
     });
   };
@@ -62,7 +67,11 @@ const Button = ({ text, onClick }: IButton) => (
   </ButtonBase>
 );
 
-const actionBtnBlock = (record: ITicket, t: TFunction, setEditMode: any) => (
+const actionBtnBlock = (
+  record: ITicketStore,
+  t: TFunction,
+  setEditMode: SetEditMode
+) => (
   <div className="mytickets__actionBtnBlock">
     <Button
       text={t("myTickets.edit")}
@@ -80,19 +89,25 @@ const showPassengers = (passengers: IPeopleCounter, t: TFunction) =>
     t("myTickets.childrens") + passengers.childrens
   } ${t("myTickets.infants") + passengers.infants}`;
 
-const showDepartureDate = (timestamp: number | undefined, record: ITicket) => {
+const showDepartureDate = (
+  timestamp: number | undefined,
+  record: ITicketStore
+) => {
   if (timestamp) {
     return getDateFromTimestamp(timestamp, record.fromTimezone);
   }
 };
 
-const showReturnDate = (timestamp: number | undefined, record: ITicket) => {
+const showReturnDate = (
+  timestamp: number | undefined,
+  record: ITicketStore
+) => {
   if (timestamp) {
     return getDateFromTimestamp(timestamp, record.destinationTimezone);
   }
 };
 
-const columns = (t: TFunction, setEditMode: any) => [
+const columns = (t: TFunction, setEditMode: SetEditMode) => [
   {
     title: t("myTickets.id"),
     dataIndex: "id",
@@ -131,7 +146,7 @@ const columns = (t: TFunction, setEditMode: any) => [
     title: t("myTickets.actions"),
     dataIndex: "action",
     key: "action",
-    render: (value: null, record: ITicket) =>
+    render: (value: null, record: ITicketStore) =>
       actionBtnBlock(record, t, setEditMode),
   },
 ];

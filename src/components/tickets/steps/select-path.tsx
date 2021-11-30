@@ -2,7 +2,7 @@ import { Select, Button } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { ICountry, ITicket } from "../../../models/ticket_interfaces";
+import { ICountry, ITicket } from "../../../models/ticket.interfaces";
 import {
   setDestination,
   setDestinationTimezone,
@@ -45,7 +45,7 @@ const SelectPath = ({
         <CountrySelector
           values={[CountrySelectorType.From, CountrySelectorType.To]}
           countries={countries}
-          defaultValue={ticket.to}
+          defaultValue={ticket?.to || ''}
         />
       </div>
       <div className="step__submit">
@@ -91,7 +91,7 @@ const CountrySelector = ({
             setTravelRoute(option.key, value)
           }
         >
-          {countries.map((country: any, index) => (
+          {countries.map((country: ICountry, index) => (
             <Option value={country.name.common} key={index}>
               {country.name.common}
             </Option>

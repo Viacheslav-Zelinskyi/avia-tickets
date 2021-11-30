@@ -4,7 +4,7 @@ import { Moment } from "moment";
 import "./steps.scss";
 import { setDepartureDate } from "../../../redux/reducers/ticket";
 import { useTranslation } from "react-i18next";
-import { ITicket } from "../../../models/ticket_interfaces";
+import { ITicket } from "../../../models/ticket.interfaces";
 
 interface ISelectDateProps {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;

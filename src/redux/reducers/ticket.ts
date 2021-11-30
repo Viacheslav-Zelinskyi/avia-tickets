@@ -1,5 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { IPeopleCounter } from "../../models/ticket_interfaces";
+import { IPeopleCounter } from "../../models/ticket.interfaces";
 
 const initialState = {};
 
