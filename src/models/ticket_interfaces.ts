@@ -12,4 +12,12 @@ export interface ITicket {
   departureDate: number;
   returnDate: number;
   passengers: IPeopleCounter;
+  id?: number
+}
+
+export interface ICountry {
+  timezones: Array<string>;
+  name: {
+    common: string;
+  };
 }

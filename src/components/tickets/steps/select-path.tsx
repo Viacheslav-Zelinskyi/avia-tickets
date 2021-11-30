@@ -2,7 +2,7 @@ import { Select, Button } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { ITicket } from "../../../models/ticket_interfaces";
+import { ICountry, ITicket } from "../../../models/ticket_interfaces";
 import {
   setDestination,
   setDestinationTimezone,
@@ -13,14 +13,14 @@ import "./steps.scss";
 
 interface ICountrySelector {
   values: Array<string>;
-  countries: Array<any>;
+  countries: Array<ICountry>;
   defaultValue: string;
 }
 
 interface ISelectPathProps {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   currentStep: number;
-  countries: Array<Object>;
+  countries: Array<ICountry>;
   ticket: ITicket;
 }
 
@@ -87,7 +87,9 @@ const CountrySelector = ({
           placeholder={value}
           size="large"
           className="step__selector"
-          onChange={(name: string, option: any) => setTravelRoute(option.key, value)}
+          onChange={(name: string, option: any) =>
+            setTravelRoute(option.key, value)
+          }
         >
           {countries.map((country: any, index) => (
             <Option value={country.name.common} key={index}>

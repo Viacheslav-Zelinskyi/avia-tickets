@@ -2,7 +2,7 @@ import { Button as ButtonBase, Table } from "antd";
 import { useState } from "react";
 import { TFunction, useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { IPeopleCounter } from "../../models/ticket_interfaces";
+import { IPeopleCounter, ITicket } from "../../models/ticket_interfaces";
 import { addTicket } from "../../redux/reducers/allTickets";
 import { getDateFromTimestamp } from "../../utils/date.helpers";
 import { exportToJson, uploadJson } from "../../utils/download.helpers";
@@ -28,10 +28,10 @@ const MyTickets = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const tickets: Array<Object> = useSelector((store: any) => store.allTickets);
+  const tickets: Array<ITicket> = useSelector((store: any) => store.allTickets);
 
   const uploadTickets = () => {
-    uploadJson((ticket: Array<Object>) => {
+    uploadJson((ticket: ITicket) => {
       dispatch(addTicket(ticket));
     });
   };
@@ -62,7 +62,7 @@ const Button = ({ text, onClick }: IButton) => (
   </ButtonBase>
 );
 
-const actionBtnBlock = (record: any, t: TFunction, setEditMode: any) => (
+const actionBtnBlock = (record: ITicket, t: TFunction, setEditMode: any) => (
   <div className="mytickets__actionBtnBlock">
     <Button
       text={t("myTickets.edit")}
@@ -80,13 +80,13 @@ const showPassengers = (passengers: IPeopleCounter, t: TFunction) =>
     t("myTickets.childrens") + passengers.childrens
   } ${t("myTickets.infants") + passengers.infants}`;
 
-const showDepartureDate = (timestamp: number | undefined, record: any) => {
+const showDepartureDate = (timestamp: number | undefined, record: ITicket) => {
   if (timestamp) {
     return getDateFromTimestamp(timestamp, record.fromTimezone);
   }
 };
 
-const showReturnDate = (timestamp: number | undefined, record: any) => {
+const showReturnDate = (timestamp: number | undefined, record: ITicket) => {
   if (timestamp) {
     return getDateFromTimestamp(timestamp, record.destinationTimezone);
   }
@@ -131,7 +131,7 @@ const columns = (t: TFunction, setEditMode: any) => [
     title: t("myTickets.actions"),
     dataIndex: "action",
     key: "action",
-    render: (value: any, record: Object) =>
+    render: (value: null, record: ITicket) =>
       actionBtnBlock(record, t, setEditMode),
   },
 ];

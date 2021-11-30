@@ -2,7 +2,7 @@ import "./tickets.scss";
 import { Steps } from "antd";
 import { useEffect, useState } from "react";
 import stepContent from "./steps";
-import { IPeopleCounter, ITicket } from "../../models/ticket_interfaces";
+import { ICountry, IPeopleCounter, ITicket } from "../../models/ticket_interfaces";
 import { getCountries } from "../../api";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ const Tickets = () => {
 
   const navigate = useNavigate();
 
-  const [countries, setCountries] = useState<Array<Object>>([]);
+  const [countries, setCountries] = useState<Array<ICountry>>([]);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isRoundTrip, setIsRoundTrip] = useState<number>(1);
   const [peopleCounter, setPeopleCounter] = useState<IPeopleCounter>({

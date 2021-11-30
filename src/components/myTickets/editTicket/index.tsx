@@ -1,5 +1,5 @@
-import { Button, DatePicker, Radio, Select } from "antd";
-import moment from "moment";
+import { Button, DatePicker, Radio } from "antd";
+import moment, { Moment } from "moment";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { PeopleCounter } from "../..";
 import { getCountries } from "../../../api";
 import { ITicket } from "../../../models/ticket_interfaces";
 import { updateTicket } from "../../../redux/reducers/allTickets";
+import { CountrySelector } from "./countrySelector";
 import "./editTicket.scss";
 
 interface IEditTicketProps {
@@ -14,20 +15,11 @@ interface IEditTicketProps {
   closeEditor: () => void;
 }
 
-interface ICountrySelectorProps {
-  countries: Array<any>;
-  placeholders: Array<string>;
-  defaultValues: Array<string>;
-  onChange: any;
-}
-
-const { Option } = Select;
-
 const dateFormat = "DD.MM.YYYY HH:mm";
 
 const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
   const ticket: ITicket = useSelector((store: any) =>
-    store.allTickets.find((ticket: any) => ticket.id === id)
+    store.allTickets.find((ticket: ITicket) => ticket.id === id)
   );
 
   const dispatch = useDispatch();
@@ -43,7 +35,7 @@ const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
       .catch((err) => alert(err));
   }, []);
 
-  const setCountry = (country: string, index: any) => {
+  const setCountry = (country: string, index: number) => {
     if (index === 0) setUpdatedTicket({ ...updatedTicket, from: country });
     else setUpdatedTicket({ ...updatedTicket, to: country });
   };
@@ -92,7 +84,7 @@ const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
             <Radio value={1}>{t("tickets.roundTrip")}</Radio>
             <Radio value={0}>{t("tickets.oneWay")}</Radio>
           </Radio.Group>
-          {!isOneWayTicket ? (
+          {!isOneWayTicket && (
             <>
               <span>{t("editTicket.returnDate")}</span>
               <DatePicker
@@ -110,7 +102,7 @@ const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
                 }
               />
             </>
-          ) : null}
+          )}
         </div>
         <div className="editTicket__peopleCounter">
           <PeopleCounter
@@ -135,32 +127,6 @@ const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
     </div>
   );
 };
-
-const CountrySelector = ({
-  countries,
-  placeholders,
-  defaultValues,
-  onChange,
-}: ICountrySelectorProps) => (
-  <div className="countrySelector__wrapper">
-    {placeholders.map((value, index) => (
-      <div className="countrySelector__select">
-        <span>{value}:</span>
-        <Select
-          placeholder={value}
-          defaultValue={defaultValues[index]}
-          size="large"
-          className="step__selector"
-          onChange={(value) => onChange(value, index)}
-        >
-          {countries.map((country: any) => (
-            <Option value={country.name.common}>{country.name.common}</Option>
-          ))}
-        </Select>
-      </div>
-    ))}
-  </div>
-);
 
 const stopPropagation = (event: any) => {
   event.stopPropagation();
