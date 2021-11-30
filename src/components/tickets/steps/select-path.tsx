@@ -14,6 +14,7 @@ import "./steps.scss";
 interface ICountrySelector {
   values: Array<string>;
   countries: Array<any>;
+  defaultValue: string;
 }
 
 interface ISelectPathProps {
@@ -44,6 +45,7 @@ const SelectPath = ({
         <CountrySelector
           values={[CountrySelectorType.From, CountrySelectorType.To]}
           countries={countries}
+          defaultValue={ticket.to}
         />
       </div>
       <div className="step__submit">
@@ -60,7 +62,11 @@ const SelectPath = ({
   );
 };
 
-const CountrySelector = ({ values, countries }: ICountrySelector) => {
+const CountrySelector = ({
+  values,
+  countries,
+  defaultValue,
+}: ICountrySelector) => {
   const dispatch = useDispatch();
 
   const setTravelRoute = (index: number, value: string) => {
@@ -75,15 +81,18 @@ const CountrySelector = ({ values, countries }: ICountrySelector) => {
 
   return (
     <>
-      {values.map((value) => (
+      {values.map((value, index) => (
         <Select
+          defaultValue={index === 1 ? defaultValue : undefined}
           placeholder={value}
           size="large"
           className="step__selector"
-          onChange={(index: number) => setTravelRoute(index, value)}
+          onChange={(name: string, option: any) => setTravelRoute(option.key, value)}
         >
-          {countries.map((country: any, index: number) => (
-            <Option value={index}>{country.name.common}</Option>
+          {countries.map((country: any, index) => (
+            <Option value={country.name.common} key={index}>
+              {country.name.common}
+            </Option>
           ))}
         </Select>
       ))}
