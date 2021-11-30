@@ -14,10 +14,10 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const images = [
-    { src: LondonImg, country: "United Kingdom", timezone: "UTC+00:00" },
-    { src: KyivImg, country: "Ukraine", timezone: "UTC+02:00" },
-    { src: MinskImg, country: "Belarus", timezone: "UTC+03:00" },
-    { src: NewYorkImg, country: "United States", timezone: "UTC-05:00" },
+    { src: LondonImg, country: "United Kingdom" },
+    { src: KyivImg, country: "Ukraine" },
+    { src: MinskImg, country: "Belarus" },
+    { src: NewYorkImg, country: "United States" },
   ];
 
   const redirectToTickets = (country: string) => {
