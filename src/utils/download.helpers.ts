@@ -1,5 +1,7 @@
-export const exportToJson = (data: any) => {
-  const blob = new Blob([JSON.stringify(data)], { type: "text/json" });
+import { ITicketStore } from "../models/redux.interfaces";
+
+export const exportToJson = (ticket: ITicketStore) => {
+  const blob = new Blob([JSON.stringify(ticket)], { type: "text/json" });
   const a = document.createElement("a");
 
   a.download = "ticket.json";
@@ -16,7 +18,7 @@ export const exportToJson = (data: any) => {
   a.remove();
 };
 
-export const uploadJson = (data: any) => {
+export const uploadJson = (data: (ticket: ITicketStore) => void) => {
   const fileReader = new FileReader();
   const input = document.createElement("input");
 

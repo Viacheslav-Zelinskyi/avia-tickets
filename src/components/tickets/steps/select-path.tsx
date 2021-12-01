@@ -2,20 +2,25 @@ import { Select, Button } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { ITicket } from "../../../models/ticket_interfaces";
-import { setDestination, setFrom } from "../../../redux/reducers/ticket";
+import { ICountry, ITicket } from "../../../models/ticket.interfaces";
+import {
+  setDestination,
+  setDestinationTimezone,
+  setFrom,
+  setFromTimezone,
+} from "../../../redux/reducers/ticket";
 import "./steps.scss";
 
 interface ICountrySelector {
   values: Array<string>;
-  countries: Array<Object>;
+  countries: Array<ICountry>;
   defaultValue: string;
 }
 
 interface ISelectPathProps {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   currentStep: number;
-  countries: Array<Object>;
+  countries: Array<ICountry>;
   ticket: ITicket;
 }
 
@@ -40,7 +45,7 @@ const SelectPath = ({
         <CountrySelector
           values={[CountrySelectorType.From, CountrySelectorType.To]}
           countries={countries}
-          defaultValue={ticket.to}
+          defaultValue={ticket?.to || ''}
         />
       </div>
       <div className="step__submit">
@@ -64,9 +69,14 @@ const CountrySelector = ({
 }: ICountrySelector) => {
   const dispatch = useDispatch();
 
-  const setTravelRoute = (country: string, value: string) => {
-    if (value === CountrySelectorType.From) dispatch(setFrom(country));
-    else dispatch(setDestination(country));
+  const setTravelRoute = (index: number, value: string) => {
+    if (value === CountrySelectorType.From) {
+      dispatch(setFrom(countries[index].name.common));
+      dispatch(setFromTimezone(countries[index].timezones[0]));
+    } else {
+      dispatch(setDestination(countries[index].name.common));
+      dispatch(setDestinationTimezone(countries[index].timezones[0]));
+    }
   };
 
   return (
@@ -77,9 +87,11 @@ const CountrySelector = ({
           placeholder={value}
           size="large"
           className="step__selector"
-          onChange={(country: string) => setTravelRoute(country, value)}
+          onChange={(name: string, option: any) =>
+            setTravelRoute(option.key, value)
+          }
         >
-          {countries.map((country: any, index) => (
+          {countries.map((country: ICountry, index) => (
             <Option value={country.name.common} key={index}>
               {country.name.common}
             </Option>

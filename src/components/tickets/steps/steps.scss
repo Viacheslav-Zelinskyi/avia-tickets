@@ -31,29 +31,6 @@
     height: 80px;
     color: white;
   }
-  &__peopleCounter {
-    display: flex;
-    button {
-      background-color: var(--background-color);
-      color: var(--font-color);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    button:hover,
-    button:focus,
-    button:active {
-      background-color: var(--background-color);
-    }
-    span {
-      font-size: 18px;
-    }
-  }
-  &__counterBtn {
-    display: flex;
-    justify-content: space-around;
-    width: 130px;
-  }
   &__summaryContainer {
     height: 400px;
     display: flex;

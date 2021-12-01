@@ -2,7 +2,7 @@ import { DatePicker, Radio, Button } from "antd";
 import { Moment } from "moment";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { ITicket } from "../../../models/ticket_interfaces";
+import { ITicket } from "../../../models/ticket.interfaces";
 import { setReturnDate } from "../../../redux/reducers/ticket";
 import "./steps.scss";
 
