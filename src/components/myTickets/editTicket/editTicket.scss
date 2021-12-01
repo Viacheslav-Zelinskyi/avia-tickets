@@ -12,7 +12,7 @@
   }
   &__container {
     border-radius: 5px;
-    background-color: #fff;
+    background-color: var(--background-color);
     width: 500px;
     height: 650px;
     display: flex;
@@ -20,6 +20,10 @@
     align-items: center;
     justify-content: center;
     text-align: left;
+
+    h1{
+      color: var(--font-color);
+    }
   }
   &__select {
     display: flex;
