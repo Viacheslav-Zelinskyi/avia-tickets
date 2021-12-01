@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.scss";
 import {
@@ -8,8 +9,13 @@ import {
   MyTicketsPage,
 } from "./components";
 import { aboutPath, homePath, myTicketsPath, ticketsPath } from "./routes";
+import { keepTheme } from "./utils/themes";
 
 function App() {
+  useEffect(() => {
+    keepTheme();
+  }, []);
+
   return (
     <div className="App">
       <Header />
