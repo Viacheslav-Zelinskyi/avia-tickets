@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { languages } from "../../utils/i18n";
 import { useEffect, useState } from "react";
 import { setTheme } from "../../utils/themes";
+import { themeKey, themes } from "../../utils/constants/themes.constants";
 
 interface IHeaderLink {
   text: string;
@@ -18,12 +19,12 @@ interface IHeaderLink {
 const Header = () => {
   const { t, i18n } = useTranslation();
   const [isDarkMode, setIsDarkMode] = useState(
-    localStorage.getItem("theme") === "theme-dark"
+    localStorage.getItem(themeKey) === themes.dark
   );
 
   useEffect(() => {
-    if (isDarkMode) setTheme("theme-dark");
-    else setTheme("theme-light");
+    if (isDarkMode) setTheme(themes.dark);
+    else setTheme(themes.light);
   }, [isDarkMode]);
 
   const languagesOptions = [
