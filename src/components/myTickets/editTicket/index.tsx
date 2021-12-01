@@ -74,14 +74,17 @@ const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
             minuteStep={15}
             className="step__selector"
             onChange={(date) =>
-              setUpdatedTicket({ ...updatedTicket, departureDate: date?.unix() })
+              setUpdatedTicket({
+                ...updatedTicket,
+                departureDate: date?.unix(),
+              })
             }
           />
         </div>
         <div className="editTicket__select">
           <Radio.Group
             className="editTicket__radio"
-            defaultValue={isOneWayTicket ? 0 : 1}
+            defaultValue={Number(!isOneWayTicket)}
             onChange={(e) => setIsOneWayTicket(!e.target.value)}
           >
             <Radio value={1}>{t("tickets.roundTrip")}</Radio>
