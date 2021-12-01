@@ -11,6 +11,9 @@
     width: 100%;
     height: 170px;
     flex-wrap: wrap;
+    h2 {
+      color: var(--font-color);
+    }
   }
   &__selector {
     width: 300px;
@@ -26,22 +29,30 @@
     justify-content: center;
     width: 100%;
     height: 80px;
+    color: white;
   }
   &__peopleCounter {
     display: flex;
     button {
+      background-color: var(--background-color);
+      color: var(--font-color);
       display: inline-flex;
       align-items: center;
       justify-content: center;
+    }
+    button:hover,
+    button:focus,
+    button:active {
+      background-color: var(--background-color);
     }
     span {
       font-size: 18px;
     }
   }
   &__counterBtn {
-      display: flex;
-      justify-content: space-around;
-      width: 130px;
+    display: flex;
+    justify-content: space-around;
+    width: 130px;
   }
   &__summaryContainer {
     height: 400px;
@@ -50,10 +61,10 @@
     justify-content: center;
   }
   &__summaryCard {
-      width: 95%;
+    width: 95%;
   }
   &__submitWrapper {
-      display: flex;
-      justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
   }
 }
