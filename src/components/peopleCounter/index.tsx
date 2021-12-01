@@ -1,18 +1,20 @@
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { IPeopleCounter } from "../../models/ticket.interfaces";
-import './peopleCounter.scss'
-
-interface IPeopleCounterProps {
-  labels: string[];
-  setPeopleCounter: React.Dispatch<React.SetStateAction<IPeopleCounter | undefined>>;
-  peopleCounter: any;
-}
+import "./peopleCounter.scss";
 
 enum passengersType {
   adult,
   childrens,
   infants,
+}
+
+type PassengersType = "adult" | "childrens" | "infants";
+
+interface IPeopleCounterProps {
+  labels: string[];
+  setPeopleCounter: React.Dispatch<React.SetStateAction<any>>;
+  peopleCounter: IPeopleCounter | undefined;
 }
 
 const PeopleCounter = ({
@@ -21,19 +23,24 @@ const PeopleCounter = ({
   peopleCounter,
 }: IPeopleCounterProps) => {
   const increaseCounter = (index: number) =>
-    setPeopleCounter({
-      ...peopleCounter,
-      [passengersType[index]]: peopleCounter[passengersType[index]] + 1,
-    });
+    setPeopleCounter(
+      peopleCounter && {
+        ...peopleCounter,
+        [passengersType[index] as PassengersType]:
+          +peopleCounter[passengersType[index] as PassengersType] + 1,
+      }
+    );
 
   const decreaseCounter = (index: number) => {
-    setPeopleCounter({
-      ...peopleCounter,
-      [passengersType[index]]:
-        peopleCounter[passengersType[index]] <= 0
-          ? 0
-          : peopleCounter[passengersType[index]] - 1,
-    });
+    setPeopleCounter(
+      peopleCounter && {
+        ...peopleCounter,
+        [passengersType[index]]:
+          peopleCounter[passengersType[index] as PassengersType] <= 0
+            ? 0
+            : peopleCounter[passengersType[index] as PassengersType] - 1,
+      }
+    );
   };
 
   return (
@@ -45,7 +52,10 @@ const PeopleCounter = ({
             <Button shape="circle" onClick={() => decreaseCounter(index)}>
               <MinusOutlined />
             </Button>
-            <span>{peopleCounter[passengersType[index]]}</span>
+            <span>
+              {peopleCounter &&
+                peopleCounter[passengersType[index] as PassengersType]}
+            </span>
             <Button shape="circle" onClick={() => increaseCounter(index)}>
               <PlusOutlined />
             </Button>

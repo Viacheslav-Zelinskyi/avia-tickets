@@ -73,8 +73,8 @@ const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
             format={dateFormat}
             minuteStep={15}
             className="step__selector"
-            onChange={(date: any) =>
-              setUpdatedTicket({ ...updatedTicket, departureDate: date.unix() })
+            onChange={(date) =>
+              setUpdatedTicket({ ...updatedTicket, departureDate: date?.unix() })
             }
           />
         </div>
@@ -99,10 +99,10 @@ const EditTicket = ({ id, closeEditor }: IEditTicketProps) => {
                 format={dateFormat}
                 minuteStep={15}
                 className="step__selector"
-                onChange={(date: any) =>
+                onChange={(date) =>
                   setUpdatedTicket({
                     ...updatedTicket,
-                    returnDate: date.unix(),
+                    returnDate: date?.unix(),
                   })
                 }
               />
